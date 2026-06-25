@@ -458,16 +458,16 @@ export default function Module2() {
             <button
               key={t.id}
               onClick={() => setView(t.id as DecisionView)}
-              className="w-full flex items-center gap-4 px-4 py-4 rounded-2xl text-left transition-all active:scale-[0.98]"
+              className="w-full flex items-center gap-4 px-5 py-5 rounded-2xl text-left transition-all active:scale-[0.98]"
               style={{ background: `${t.color}14`, border: `1px solid ${t.color}33` }}
             >
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0"
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
                 style={{ background: `${t.color}22`, color: t.color }}>
-                <span className="text-base">{t.glyph}</span>
+                <span className="text-lg">{t.glyph}</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white truncate">{t.label}</p>
-                <p className="text-xs text-slate-400 mt-0.5 truncate">{t.sub}</p>
+                <p className="text-[15px] font-semibold text-white leading-snug">{t.label}</p>
+                <p className="text-sm text-slate-400 mt-1">{t.sub}</p>
               </div>
               <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke={t.color} strokeWidth="2.2" opacity="0.6">
                 <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />

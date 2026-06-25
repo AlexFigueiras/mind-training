@@ -367,7 +367,7 @@ export default function Module1() {
     <div className="space-y-6">
       {/* Vagal State Selector */}
       <div>
-        <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Estado do SNA Agora</h3>
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Estado do SNA Agora</h3>
         <div className="grid grid-cols-3 gap-3">
           {(Object.keys(VAGAL_INFO) as VagalState[]).map(vs => {
             const info = VAGAL_INFO[vs]
@@ -376,14 +376,14 @@ export default function Module1() {
               <button
                 key={vs}
                 onClick={() => setVagalState(vs)}
-                className="p-3 rounded-xl border text-left transition-all"
+                className="p-4 rounded-2xl border text-left transition-all active:scale-[0.97]"
                 style={{
                   background: active ? info.bg : 'rgba(255,255,255,0.02)',
                   borderColor: active ? info.border : '#1e2d45',
                 }}
               >
-                <div className="w-2 h-2 rounded-full mb-2" style={{ background: info.color }} />
-                <p className="text-xs font-medium text-slate-200 leading-tight">
+                <div className="w-3 h-3 rounded-full mb-2.5" style={{ background: info.color }} />
+                <p className="text-sm font-semibold leading-tight" style={{ color: active ? info.color : '#cbd5e1' }}>
                   {vs === 'ventral' ? 'Vagal Ventral' : vs === 'sympathetic' ? 'Simpático' : 'Vagal Dorsal'}
                 </p>
               </button>
@@ -391,33 +391,43 @@ export default function Module1() {
           })}
         </div>
         <div
-          className="mt-3 p-3 rounded-xl border text-sm"
+          className="mt-3 p-4 rounded-2xl border"
           style={{ background: current.bg, borderColor: current.border }}
         >
-          <p className="font-semibold mb-1" style={{ color: current.color }}>{current.label}</p>
-          <p className="text-slate-400 text-xs leading-relaxed">{current.desc}</p>
+          <p className="text-base font-semibold mb-1.5" style={{ color: current.color }}>{current.label}</p>
+          <p className="text-sm text-slate-400 leading-relaxed">{current.desc}</p>
         </div>
       </div>
 
       {/* Protocol Selection */}
       <div>
-        <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Protocolos Respiratórios</h3>
-        <div className="grid grid-cols-1 gap-2">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Protocolos Respiratórios</h3>
+        <div className="space-y-3">
           {[
-            { id: 'sigh' as Protocol, label: 'Suspiro Fisiológico Cíclico', trigger: 'Pico de estresse / pré-decisão', color: '#3b82f6' },
-            { id: 'box' as Protocol, label: 'Box Breathing', trigger: 'Pressão extrema / ansiedade aguda', color: '#06b6d4' },
-            { id: 'hyper' as Protocol, label: 'Hiperventilação Cíclica', trigger: 'Aumento de alerta mental / foco', color: '#8b5cf6' },
+            { id: 'sigh' as Protocol, label: 'Suspiro Fisiológico Cíclico', trigger: 'Pico de estresse / pré-decisão', color: '#3b82f6', glyph: '◎' },
+            { id: 'box' as Protocol, label: 'Box Breathing', trigger: 'Pressão extrema / ansiedade aguda', color: '#06b6d4', glyph: '◫' },
+            { id: 'hyper' as Protocol, label: 'Hiperventilação Cíclica', trigger: 'Aumento de alerta mental / foco', color: '#8b5cf6', glyph: '◈' },
           ].map(p => (
             <button
               key={p.id}
               onClick={() => setActiveProtocol(activeProtocol === p.id ? null : p.id)}
-              className="flex items-center justify-between p-3.5 rounded-xl border border-slate-700/50 hover:border-slate-600 bg-slate-900/40 transition-all text-left"
+              className="w-full flex items-center gap-4 px-5 py-5 rounded-2xl text-left transition-all active:scale-[0.98]"
+              style={{
+                background: activeProtocol === p.id ? `${p.color}20` : `${p.color}10`,
+                border: `1px solid ${activeProtocol === p.id ? p.color + '60' : p.color + '30'}`,
+              }}
             >
-              <div>
-                <p className="text-sm font-medium text-slate-200">{p.label}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{p.trigger}</p>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                style={{ background: `${p.color}22`, color: p.color }}>
+                <span className="text-lg">{p.glyph}</span>
               </div>
-              <div className="w-2 h-2 rounded-full ml-3 flex-shrink-0" style={{ background: p.color }} />
+              <div className="flex-1 min-w-0">
+                <p className="text-[15px] font-semibold text-white leading-snug">{p.label}</p>
+                <p className="text-sm text-slate-400 mt-1">{p.trigger}</p>
+              </div>
+              <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke={p.color} strokeWidth="2.2" opacity="0.6">
+                <path d={activeProtocol === p.id ? 'M18 15l-6-6-6 6' : 'M6 9l6 6 6-6'} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           ))}
         </div>

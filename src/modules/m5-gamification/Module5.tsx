@@ -110,17 +110,17 @@ export default function Module5() {
     <div className="space-y-5">
       {/* Score Display */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="p-3 rounded-xl border border-slate-700/50 bg-slate-900/40 text-center">
+        <div className="p-4 rounded-2xl border border-slate-700/50 bg-slate-900/40 text-center">
           <p className="text-2xl font-bold text-white">{state.totalPoints.toLocaleString()}</p>
-          <p className="text-xs text-slate-500 mt-0.5">Pontos Totais</p>
+          <p className="text-sm text-slate-500 mt-1">Pontos</p>
         </div>
-        <div className="p-3 rounded-xl border border-slate-700/50 bg-slate-900/40 text-center">
+        <div className="p-4 rounded-2xl border border-slate-700/50 bg-slate-900/40 text-center">
           <p className="text-2xl font-bold text-blue-400">{state.consecutiveCycles}</p>
-          <p className="text-xs text-slate-500 mt-0.5">Streak</p>
+          <p className="text-sm text-slate-500 mt-1">Streak</p>
         </div>
-        <div className="p-3 rounded-xl border border-slate-700/50 bg-slate-900/40 text-center">
+        <div className="p-4 rounded-2xl border border-slate-700/50 bg-slate-900/40 text-center">
           <p className="text-2xl font-bold text-amber-400">+{pts}</p>
-          <p className="text-xs text-slate-500 mt-0.5">Pts/Ciclo</p>
+          <p className="text-sm text-slate-500 mt-1">Pts/Ciclo</p>
         </div>
       </div>
 

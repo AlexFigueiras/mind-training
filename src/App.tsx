@@ -134,16 +134,16 @@ function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
               <button
                 key={id}
                 onClick={() => onNavigate(id as View)}
-                className="w-full flex items-center gap-4 px-4 py-4 rounded-2xl text-left transition-all active:scale-[0.98]"
+                className="w-full flex items-center gap-4 px-5 py-5 rounded-2xl text-left transition-all active:scale-[0.98]"
                 style={{ background: `${m.color}14`, border: `1px solid ${m.color}33` }}
               >
-                <div className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0"
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
                   style={{ background: `${m.color}22` }}>
-                  <span className="text-sm font-bold" style={{ color: m.color }}>{id}</span>
+                  <span className="text-base font-bold" style={{ color: m.color }}>{id}</span>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white truncate">{m.label}</p>
-                  <p className="text-xs text-slate-400 mt-0.5 truncate">{m.desc}</p>
+                  <p className="text-[15px] font-semibold text-white leading-snug">{m.label}</p>
+                  <p className="text-sm text-slate-400 mt-1">{m.desc}</p>
                 </div>
                 <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke={m.color} strokeWidth="2.2" opacity="0.6">
                   <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -186,7 +186,7 @@ function ModuleView({ id, onBack, children }: { id: number; onBack: () => void; 
         </div>
         <div>
           <p className="text-[11px] text-slate-500 uppercase tracking-widest">Módulo {id}</p>
-          <h2 className="text-base font-bold text-white leading-tight">{m.label}</h2>
+          <h2 className="text-lg font-bold text-white leading-tight">{m.label}</h2>
         </div>
       </div>
       {children}
@@ -266,7 +266,7 @@ export default function App() {
         </div>
       )}
 
-      <main className="max-w-lg mx-auto px-4 pt-5" style={{ paddingBottom: '92px' }}>
+      <main className="max-w-lg mx-auto px-5 pt-5" style={{ paddingBottom: '100px' }}>
         <div key={String(view)} className="animate-in">
           {renderContent()}
         </div>
