@@ -444,27 +444,34 @@ export default function Module2() {
   const [view, setView] = useState<DecisionView>(null)
 
   const tools = [
-    { id: 'classify', label: 'Classificador Tipo 1 / Tipo 2', sub: 'Bezos — One-Way vs Two-Way Door', color: '#3b82f6' },
-    { id: 'munger', label: 'Latticework de Munger', sub: 'Inversão · Círculo · Margem de Segurança', color: '#f59e0b' },
-    { id: 'first-principles', label: 'Primeiros Princípios', sub: 'Musk — Deconstrução e Reconstrução', color: '#8b5cf6' },
-    { id: 'matrices', label: 'Regret Minimization', sub: 'Bezos — Perspectiva dos 80 anos', color: '#10b981' },
+    { id: 'classify', label: 'Classificador Tipo 1 / Tipo 2', sub: 'Bezos — One-Way vs Two-Way Door', color: '#3b82f6', glyph: '◈' },
+    { id: 'munger', label: 'Latticework de Munger', sub: 'Inversão · Círculo · Margem', color: '#f59e0b', glyph: '◆' },
+    { id: 'first-principles', label: 'Primeiros Princípios', sub: 'Musk — Deconstrução e Reconstrução', color: '#8b5cf6', glyph: '▣' },
+    { id: 'matrices', label: 'Regret Minimization', sub: 'Bezos — Perspectiva dos 80 anos', color: '#10b981', glyph: '◷' },
   ] as const
 
   return (
     <div className="space-y-4">
       {!view ? (
-        <div className="grid grid-cols-1 gap-3">
+        <div className="space-y-2.5">
           {tools.map(t => (
             <button
               key={t.id}
               onClick={() => setView(t.id as DecisionView)}
-              className="flex items-center justify-between p-4 rounded-xl border border-slate-700/50 hover:border-slate-600 bg-slate-900/40 transition-all text-left group"
+              className="w-full flex items-center gap-4 px-4 py-4 rounded-2xl text-left transition-all active:scale-[0.98]"
+              style={{ background: `${t.color}14`, border: `1px solid ${t.color}33` }}
             >
-              <div>
-                <p className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">{t.label}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{t.sub}</p>
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0"
+                style={{ background: `${t.color}22`, color: t.color }}>
+                <span className="text-base">{t.glyph}</span>
               </div>
-              <div className="w-2 h-2 rounded-full flex-shrink-0 ml-3" style={{ background: t.color }} />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-white truncate">{t.label}</p>
+                <p className="text-xs text-slate-400 mt-0.5 truncate">{t.sub}</p>
+              </div>
+              <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke={t.color} strokeWidth="2.2" opacity="0.6">
+                <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           ))}
         </div>
