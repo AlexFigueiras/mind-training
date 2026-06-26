@@ -368,23 +368,24 @@ export default function Module1() {
       {/* Vagal State Selector */}
       <div>
         <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Estado do SNA Agora</h3>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex gap-2.5">
           {(Object.keys(VAGAL_INFO) as VagalState[]).map(vs => {
             const info = VAGAL_INFO[vs]
             const active = state.vagalState === vs
+            const shortLabel = vs === 'ventral' ? 'Ventral' : vs === 'sympathetic' ? 'Simpático' : 'Dorsal'
             return (
               <button
                 key={vs}
                 onClick={() => setVagalState(vs)}
-                className="p-4 rounded-2xl border text-left transition-all active:scale-[0.97]"
+                className="flex-1 py-4 rounded-2xl border text-center transition-all active:scale-[0.97]"
                 style={{
                   background: active ? info.bg : 'rgba(255,255,255,0.02)',
                   borderColor: active ? info.border : '#1e2d45',
                 }}
               >
-                <div className="w-3 h-3 rounded-full mb-2.5" style={{ background: info.color }} />
-                <p className="text-sm font-semibold leading-tight" style={{ color: active ? info.color : '#cbd5e1' }}>
-                  {vs === 'ventral' ? 'Vagal Ventral' : vs === 'sympathetic' ? 'Simpático' : 'Vagal Dorsal'}
+                <div className="w-3 h-3 rounded-full mx-auto mb-2" style={{ background: info.color }} />
+                <p className="text-sm font-semibold" style={{ color: active ? info.color : '#94a3b8' }}>
+                  {shortLabel}
                 </p>
               </button>
             )
