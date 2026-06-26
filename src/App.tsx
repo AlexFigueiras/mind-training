@@ -104,10 +104,11 @@ function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
             <p className="text-[11px] text-slate-400 mt-0.5">Streak</p>
           </div>
           <div className="flex-1 rounded-2xl px-3 py-2.5" style={{ background: 'rgba(0,0,0,0.35)' }}>
-            <p className="text-xl font-bold flex items-center gap-1" style={{ color: vagalColor }}>
-              <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: vagalColor }} />
-            </p>
-            <p className="text-[11px] text-slate-400 mt-1">{VAGAL_LABEL[state.vagalState]}</p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: vagalColor }} />
+              <p className="text-sm font-bold leading-none" style={{ color: vagalColor }}>{VAGAL_LABEL[state.vagalState]}</p>
+            </div>
+            <p className="text-[11px] text-slate-400 mt-1.5">Estado</p>
           </div>
         </div>
       </div>
@@ -154,14 +155,11 @@ function HomeView({ onNavigate }: { onNavigate: (v: View) => void }) {
         </div>
       </div>
 
-      {/* Score formula */}
-      <div className="rounded-2xl p-4 text-center"
-        style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.22)' }}>
-        <p className="text-xs text-slate-400 mb-1">Pontos por ciclo (fórmula SINC)</p>
-        <p className="text-3xl font-bold text-purple-300">{score}</p>
-        <p className="text-[11px] text-slate-500 mt-1 font-mono">
-          Pₜ = 100 × (1 + 0.15·{state.consecutiveCycles}) · e^(−0.08·{state.failureIndex})
-        </p>
+      {/* Score strip */}
+      <div className="rounded-xl px-4 py-3 flex items-center justify-between"
+        style={{ background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.18)' }}>
+        <p className="text-xs text-slate-500">Pts por ciclo (SINC)</p>
+        <p className="text-base font-bold text-purple-300">{score} pts</p>
       </div>
     </div>
   )
