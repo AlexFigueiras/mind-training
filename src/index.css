@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
+/* Keep the reset inside @layer base so Tailwind's utility classes
+   (px-*, p-*, m-*, etc. live in @layer utilities) are NOT overridden.
+   An unlayered `* { padding: 0 }` beats every layered utility and would
+   zero out all padding/margin across the whole app. */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 html {
